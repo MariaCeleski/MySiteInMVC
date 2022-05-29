@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<ContatoModel>
+@{
     ViewData["Title"] = "Listagem de contatos";
 }
 
@@ -22,11 +23,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto@gmail.com</td>
-      <td>4898542632</td>
+   @if (Model != null && Model.Any())
+            {
+                foreach (ContatoModel contato in Model)
+                {
+                     <tr>
+      <th scope="row">@contato.Id</th>
+      <td>@contato.Name</td>
+      <td>@contato.Email</td>
+      <td>@contato.Celular</td>
       <td>
             <div class="btn-group" role="group">
                 <a role ="button" class="btn btn-success" asp-controller="Contato" asp-action="Editar">Editar</a>
@@ -58,6 +63,8 @@
             </div>
       </td>
     </tr>
-  </tbody>
+                }
+            }
+        </tbody>
 </table>
 </div>

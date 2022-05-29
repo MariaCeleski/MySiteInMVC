@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySiteInMVC.Models;
 using MySiteInMVC.Repository;
+using System.Collections.Generic;
 
 namespace MySiteInMVC.Controllers
 {
@@ -15,8 +16,9 @@ namespace MySiteInMVC.Controllers
         }
         public IActionResult Index()
         {
-
-            return View();
+           List<ContatoModel> contatos =  _ContatoRepository.BuscarTodos();
+                
+            return View(contatos);
         }
 
         public IActionResult Criar()

@@ -1,5 +1,7 @@
 ﻿using MySiteInMVC.Data;
 using MySiteInMVC.Models;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MySiteInMVC.Repository
 {
@@ -10,7 +12,11 @@ namespace MySiteInMVC.Repository
         {
             _bancoContext = bancoContext;
         }
-        
+
+                public List<ContatoModel> BuscarTodos()
+        {
+            return _bancoContext.Contatos.ToList();
+        }
         public ContatoModel Adicionar(ContatoModel contato)
         {
            _bancoContext.Contatos.Add(contato);
@@ -19,5 +25,6 @@ namespace MySiteInMVC.Repository
             return contato;
 
         }
+
     }
 }
