@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MySiteInMVC.Models;
 
 namespace MySiteInMVC.Controllers
 {
@@ -27,5 +28,12 @@ namespace MySiteInMVC.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Criar(ContatoModel contato)
+        {
+            return View(contato);
+        }
+
     }
 }
