@@ -1,10 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySiteInMVC.Models;
+using MySiteInMVC.Repository;
 
 namespace MySiteInMVC.Controllers
 {
+    
     public class ContatoController : Controller
+
     {
+        private readonly IContatoRepository _ContatoRepository;
+        public ContatoController(IContatoRepository contatoRepository)
+        {
+            _ContatoRepository = contatoRepository;
+        }
         public IActionResult Index()
         {
 
@@ -32,8 +40,8 @@ namespace MySiteInMVC.Controllers
         [HttpPost]
         public IActionResult Criar(ContatoModel contato)
         {
-            return View(contato);
+            _ContatoRepository.Adicionar(contato);
+            return RedirectToAction("Index");
         }
-
     }
 }
