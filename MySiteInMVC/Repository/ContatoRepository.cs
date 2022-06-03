@@ -1,37 +1,62 @@
-﻿using MySiteInMVC.Data;
-using MySiteInMVC.Models;
+﻿using MySiteInMVC.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MySiteInMVC.Repository
+namespace namespace MySiteInMVC.Repository
 {
-    public class ContatoRepository : IContatoRepository
+    public class ContatoRepositorio : IContatoRepository
     {
-        private readonly BancoContext _bancoContext;
-        private object _context;
+        private readonly BancoContent _context;
 
-        public ContatoRepository(BancoContext bancoContext)
+        public ContatoRepositorio(BancoContent bancoContent)
         {
-            _bancoContext = bancoContext;
+            this._context = bancoContent;
         }
-        ContatoModel ListarPorId(int id)
-        {
-            return _context.Contatos
 
+        public ContatoModel BuscarPorID(int id)
+        {
+            return _context.Contatos.FirstOrDefault(x => x.Id == id);
         }
+
         public List<ContatoModel> BuscarTodos()
         {
-            return _bancoContext.Contatos.ToList();
+            return _context.Contatos.ToList();
         }
+
         public ContatoModel Adicionar(ContatoModel contato)
         {
-           _bancoContext.Contatos.Add(contato);
-           _bancoContext.SaveChanges();
-             
+            _context.Contatos.Add(contato);
+            _context.SaveChanges();
             return contato;
-
         }
 
-        
+        public ContatoModel Atualizar(ContatoModel contato)
+        {
+            ContatoModel contatoDB = BuscarPorID(contato.Id);
+
+            if (contatoDB == null) throw new Exception("Houve um erro na atualização do contato!");
+
+            contatoDB.Nome = contato.Nome;
+            contatoDB.Email = contato.Email;
+            contatoDB.Celular = contato.Celular;
+
+            _context.Contatos.Update(contatoDB);
+            _context.SaveChanges();
+
+            return contatoDB;
+        }
+
+        public bool Apagar(int id)
+        {
+            ContatoModel contatoDB = BuscarPorID(id);
+
+            if (contatoDB == null) throw new Exception("Houve um erro na deleção do contato!");
+
+            _context.Contatos.Remove(contatoDB);
+            _context.SaveChanges();
+
+            return true;
+        }
     }
 }

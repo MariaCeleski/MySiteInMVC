@@ -3,10 +3,12 @@ using System.Collections.Generic;
 
 namespace MySiteInMVC.Repository
 {
-    public interface IContatoRepository 
+    public interface IContatoRepository
     {
-        ContatoModel ListarPorId(int id);
         List<ContatoModel> BuscarTodos();
+        ContatoModel BuscarPorID(int id);
         ContatoModel Adicionar(ContatoModel contato);
+        ContatoModel Atualizar(ContatoModel contato);
+        bool Apagar(int id);
     }
 }
