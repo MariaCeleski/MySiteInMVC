@@ -9,14 +9,14 @@ namespace MySiteInMVC.Controllers
     public class ContatoController : Controller
 
     {
-        private readonly IContatoRepository _ContatoRepository;
+        private readonly IContatoRepository _contatoRepository;
         public ContatoController(IContatoRepository contatoRepository)
         {
-            _ContatoRepository = contatoRepository;
+            _contatoRepository = contatoRepository;
         }
         public IActionResult Index()
         {
-           List<ContatoModel> contatos =  _ContatoRepository.BuscarTodos();
+            List<ContatoModel> contatos = _contatoRepository.BuscarTodos();
                 
             return View(contatos);
         }
@@ -27,7 +27,7 @@ namespace MySiteInMVC.Controllers
             return View();
         }
 
-        public IActionResult Editar()
+        public IActionResult Editar(int Id)
         {
 
             return View();
@@ -42,7 +42,7 @@ namespace MySiteInMVC.Controllers
         [HttpPost]
         public IActionResult Criar(ContatoModel contato)
         {
-            _ContatoRepository.Adicionar(contato);
+            _contatoRepository.Adicionar(contato);
             return RedirectToAction("Index");
         }
     }
