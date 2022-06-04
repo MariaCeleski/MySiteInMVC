@@ -1,10 +1,15 @@
-﻿namespace MySiteInMVC.Repository
+﻿using MySiteInMVC.Data;
+using MySiteInMVC.Models;
+using System;
+using System.Collections.Generic;
+
+namespace MySiteInMVC.Repository
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly BancoContent _context;
+        private readonly BancoContext _context;
 
-        public UsuarioRepository(BancoContent bancoContent)
+        public UsuarioRepository(BancoContext bancoContent)
         {
             this._context = bancoContent;
         }
