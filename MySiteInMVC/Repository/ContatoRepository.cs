@@ -1,17 +1,18 @@
-﻿using MySiteInMVC.Repository;
+﻿using MySiteInMVC.Data;
+using MySiteInMVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace namespace MySiteInMVC.Repository
+namespace MySiteInMVC.Repository
 {
-    public class ContatoRepositorio : IContatoRepository
+    public class ContatoRepository : IContatoRepository
     {
-        private readonly BancoContent _context;
+        private readonly BancoContext _context;
 
-        public ContatoRepositorio(BancoContent bancoContent)
+        public ContatoRepository(BancoContext bancoContext)
         {
-            this._context = bancoContent;
+            this._context = bancoContext;
         }
 
         public ContatoModel BuscarPorID(int id)
@@ -37,7 +38,7 @@ namespace namespace MySiteInMVC.Repository
 
             if (contatoDB == null) throw new Exception("Houve um erro na atualização do contato!");
 
-            contatoDB.Nome = contato.Nome;
+            contatoDB.Name = contato.Name;
             contatoDB.Email = contato.Email;
             contatoDB.Celular = contato.Celular;
 
@@ -58,5 +59,6 @@ namespace namespace MySiteInMVC.Repository
 
             return true;
         }
+
     }
 }
