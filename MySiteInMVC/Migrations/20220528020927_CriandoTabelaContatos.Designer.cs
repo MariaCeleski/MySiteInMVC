@@ -8,7 +8,7 @@ using MySiteInMVC.Data;
 
 namespace MySiteInMVC.Migrations
 {
-    [DbContext(typeof(BancoContext))]
+    [DbContext(typeof(BancoContent))]
     [Migration("20220528020927_CriandoTabelaContatos")]
     partial class CriandoTabelaContatos
     {

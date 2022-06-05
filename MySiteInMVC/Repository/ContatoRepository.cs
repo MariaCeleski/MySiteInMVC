@@ -8,11 +8,11 @@ namespace MySiteInMVC.Repository
 {
     public class ContatoRepository : IContatoRepository
     {
-        private readonly BancoContext _context;
+        private readonly BancoContent _context;
 
-        public ContatoRepository(BancoContext bancoContext)
+        public ContatoRepository(BancoContent bancoContent)
         {
-            this._context = bancoContext;
+            this._context = bancoContent;
         }
 
         public ContatoModel BuscarPorID(int id)
@@ -38,7 +38,7 @@ namespace MySiteInMVC.Repository
 
             if (contatoDB == null) throw new Exception("Houve um erro na atualização do contato!");
 
-            contatoDB.Name = contato.Name;
+            contatoDB.Nome = contato.Nome;
             contatoDB.Email = contato.Email;
             contatoDB.Celular = contato.Celular;
 

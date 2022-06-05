@@ -2,14 +2,15 @@
 using MySiteInMVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MySiteInMVC.Repository
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        private readonly BancoContext _context;
+        private readonly BancoContent _context;
 
-        public UsuarioRepository(BancoContext bancoContent)
+        public UsuarioRepository(BancoContent bancoContent)
         {
             this._context = bancoContent;
         }
@@ -32,7 +33,7 @@ namespace MySiteInMVC.Repository
         public UsuarioModel Adicionar(UsuarioModel usuario)
         {
             usuario.DataCadastro = DateTime.Now;
-            usuario.SetSenhaHash();
+           // usuario.SetSenhaHash();
             _context.Usuarios.Add(usuario);
             _context.SaveChanges();
             return usuario;
