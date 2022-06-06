@@ -25,6 +25,7 @@ namespace MySiteInMVC
             services.AddEntityFrameworkSqlServer()
                 .AddDbContext<BancoContent>(o => o.UseSqlServer(Configuration.GetConnectionString("DataBase")));
             services.AddScoped<IContatoRepository, ContatoRepository>();
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

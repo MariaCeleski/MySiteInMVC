@@ -33,7 +33,7 @@ namespace MySiteInMVC.Repository
         public UsuarioModel Adicionar(UsuarioModel usuario)
         {
             usuario.DataCadastro = DateTime.Now;
-           // usuario.SetSenhaHash();
+            usuario.SetSenhaHash();
             _context.Usuarios.Add(usuario);
             _context.SaveChanges();
             return usuario;
